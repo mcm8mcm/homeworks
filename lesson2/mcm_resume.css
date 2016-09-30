@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+.part-head {
+	text-align: center;
+	text-decoration: underline;
+	padding-bottom: 40px;
+	text-transform: uppercase;
+}
+
+.part-block {
+	margin: 5px;
+}
+
+.item-head {
+	font-weight: bold;
+}
+
+.tab-item-head {
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 30%;
+	vertical-align: middle;
+}
+
+.tab-item-value {
+	padding-left: 30%;
+}
