@@ -3,10 +3,10 @@
 		$matches1 = [];
 		$matches2 = [];
 		
-		preg_match_all('/\w+/', $a, $matches1);
-		preg_match_all('/\w+/', $b, $matches2);
+		$matches1 = preg_split("/[\s,]+/", $a);
+		$matches2 = preg_split("/[\s,]+/", $b);
 			
-		$common = array_intersect($matches1[0] , $matches2[0]);
+		$common = array_intersect($matches1 , $matches2);
 		return $common;
 	}
 ?>
