@@ -1,4 +1,4 @@
-<?php define('BASE_PATH', 'http://localhost/homeworks/functions_forms_tasks/')?>
+<?php define('BASE_PATH', 'http://localhost:8080/functions_forms_tasks/')?>
 <?php define('PD', '/')?>
 <?php define('DS', DIRECTORY_SEPARATOR)?>
 <!DOCTYPE html>
