@@ -1,5 +1,6 @@
 <?php
 $f = __FILE__;
+$style =  '<link rel="stylesheet" href="6/6.css">';
 include '../common/title.php';
 ?>
 
@@ -17,6 +18,14 @@ include '../common/title.php';
 		
 		return $res;
 	}
+	
+	function getNewImageSize($imagePath) {
+		list($w,$h,$type) = getimagesize($imagePath);
+		$type = image_type_to_extension($type);
+		$new_h = 300;
+		$new_w = $new_h * ($w / $h);
+		return [$new_h, $new_w];
+	}	
 ?>
 <div class="row" style="margin-bottom: 75px">
 	<div class="col-lg-offset-2">
@@ -29,7 +38,7 @@ include '../common/title.php';
 				<div class="form-group">
 					<label for="fl_pick">Файл картинки:</label>
 					<span class="btn btn-default btn-file">
-						<input type="file" id="fl_pick" name="fl_pick" multiple="" accept="image/jpeg,image/png,image/gifs,image/bmp" title="Вабрать файл" />
+						<input type="file" id="fl_pick" name="fl_pick[]" multiple accept="image/jpeg,image/png,image/gifs,image/bmp" title="Вабрать файл" />
 					</span>						
 				</div>
 
@@ -41,11 +50,22 @@ include '../common/title.php';
 				<label for="tab_files">Файлы на сервере:</label>
 			
 				<?php $files = getFileList(); if(count($files) != 0) {  ?>
-					<table>
+					<table >
 						<?php foreach($files as $file) { ?>
+							<?php
+								$file_path = '6/gallery'. PD . basename($file);
+								list($new_h, $new_w) = getNewImageSize($file);
+							?>
 							<tr>
-								<td style="margin: 15px;width: 70px; height: 70px"><img src="<?='6/gallery'.PD.basename($file)?>"></img></td>
-								<td><?=basename($file)?></td>
+								<td class="image">
+									<div class="panel panel-default">
+										<div class="panel-heading"><?=basename($file)?></div>
+									
+										<div class="panel-body" style="text-align: center">
+											<img src="<?=$file_path?>" width="<?=$new_w;?>" height="<?=$new_h?>"></img>
+										</div>
+									</div>
+								</td>
 							</tr>
 						<?php } ?>
 					</table>
