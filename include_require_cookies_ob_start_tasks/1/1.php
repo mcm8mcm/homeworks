@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $f = __FILE__;
 $style =  '<link rel="stylesheet" href="1/1.css">';
 include '../common/title.php';
@@ -60,6 +61,7 @@ if(empty($warning) && !empty($message)){
 setcookie('user_id', $id);
 setcookie('counter', $counter);
 setcookie('last_time', $last_time);
+ob_end_flush();
 ?>
 
 
