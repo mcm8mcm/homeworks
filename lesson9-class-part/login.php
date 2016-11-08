@@ -46,6 +46,7 @@
     }
 ?>
 
+<?php if(!defined('BASE_PATH')) {include_once 'config.php';} ?>
 <?php include "templates/header.php"; ?>
 
 <div class="row">

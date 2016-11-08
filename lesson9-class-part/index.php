@@ -5,14 +5,16 @@
  * Date: 19.10.2016
  * Time: 19:01
  */
-require_once 'config.php';
+
+include_once 'config.php';
 
 ob_start();
+
 global $pageContent, $pageTitle;
+require_once SYSTEM_PATH . 'loader.php';
 
 require_once 'auth.php';
 
-require_once SYSTEM_PATH . 'loader.php';
 
 $Loader = new Loader();
 
