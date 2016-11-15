@@ -61,16 +61,12 @@ class User extends Model
     	return false; 	 
     }
     
-    public function logIn()
+    public function logIn($user_name, $password)
     {
     	$this->reset();
     	
-    	if(isset($_POST['user_name'])){
-    		$user_name = $this->prepareParam($_POST['user_name']);
-    		$password = $_POST['password'];
-    	}else {
-    		return;
-    	}
+    	$user_name = $this->prepareParam($user_name);
+    	$password = $password;
     	 
     	if(isset($_SESSION['user'])){
     		if(strtoupper($_SESSION['user']['login']) === strtoupper($user_name)){
@@ -85,20 +81,20 @@ class User extends Model
     	}
     }
         
-    public function signUp()
+    public function signUp($user_name, $password, $e_mail='')
     {
     	$this->reset();
     	
-    	if(isset($_POST['user_name'])){
-    		if($this->isUserExists($_POST['user_name'])){
-    			$_SESSION['user_error_msg'] = '<strong>User name ' . $_POST['user_name']. ' is already taken</strong> !';
+    	if(isset($user_name)){
+    		if($this->isUserExists($user_name)){
+    			$_SESSION['user_error_msg'] = '<strong>User name ' . $user_name. ' is already taken</strong> !';
     			Router::gotoUrl(Config::get('root_prefix') . 'users');
     		}
     	}
   	
-    	$name = $this->prepareParam($_POST['user_name']);
-    	$email = $this->prepareParam($_POST['e_mail']);
-    	$password = md5($this->prepareParam($_POST['password']));
+    	$name = $this->prepareParam($user_name);
+    	$email = $this->prepareParam($e_mail);
+    	$password = md5($this->prepareParam($password));
     	
     	$sql = "INSERT INTO `users` (`login`,`email`,`password`) values ('$name', '$email', '$password')"; 
 

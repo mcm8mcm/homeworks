@@ -12,7 +12,7 @@ class UsersController extends Controller{
     		App::getRouter()->gotoUrl('/');
     	}
     	$users = new User();
-    	$users->signUp();
+    	$users->signUp($_POST['user_name'], $_POST['password'], $_POST['e_mail']);
     	App::getRouter()->gotoUrl(Config::get('root_prefix').'users');
     }
     
@@ -21,7 +21,7 @@ class UsersController extends Controller{
     		App::getRouter()->gotoUrl('/');
     	}
     	$users = new User();
-    	$users->logIn();
+    	$users->logIn($_POST['user_name'], $_POST['password']);
     	App::getRouter()->gotoUrl(Config::get('root_prefix').'users');
     }
     
